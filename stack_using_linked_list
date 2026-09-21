@@ -1,0 +1,63 @@
+# Experiment 4: Stack using Linked List :- 
+
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+top = None
+
+# Push
+def push(data):
+    global top
+
+    new_node = Node(data)
+    new_node.next = top
+    top = new_node
+
+    print(data, "pushed into stack")
+
+# Pop
+def pop():
+    global top
+
+    if top is None:
+        print("Stack Underflow")
+    else:
+        print(top.data, "popped from stack")
+        top = top.next
+
+# Peek
+def peek():
+    if top is None:
+        print("Stack is empty")
+    else:
+        print("Top element:", top.data)
+
+
+# Display
+def display():
+    if top is None:
+        print("Stack is empty")
+    else:
+        temp = top
+
+        while temp is not None:
+            print(temp.data)
+            temp = temp.next
+
+
+push(10)
+push(20)
+push(30)
+
+print("Stack:")
+display()
+
+peek()
+
+pop()
+
+print("After pop:")
+display()

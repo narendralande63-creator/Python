@@ -1,0 +1,104 @@
+# singly linked list exp 3 :- 
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+head = None
+
+# Insert
+def insert(data):
+    global head
+
+    new_node = Node(data)
+
+    if head is None:
+        head = new_node
+    else:
+        temp = head
+
+        while temp.next is not None:
+            temp = temp.next
+
+        temp.next = new_node
+
+# Display
+def display():
+    temp = head
+
+    while temp is not None:
+        print(temp.data, end=" -> ")
+        temp = temp.next
+
+    print("None")
+
+# Search
+def search(value):
+    temp = head
+
+    while temp is not None:
+        if temp.data == value:
+            print("Element found")
+            return
+
+        temp = temp.next
+
+    print("Element not found")
+
+# Delete
+def delete(value):
+    global head
+
+    if head is None:
+        print("List is empty")
+        return
+
+    if head.data == value:
+        head = head.next
+        return
+
+    temp = head
+
+    while temp.next is not None:
+        if temp.next.data == value:
+            temp.next = temp.next.next
+            return
+
+        temp = temp.next
+
+    print("Element not found")
+
+# Reverse
+def reverse():
+    global head
+
+    previous = None
+    current = head
+
+    while current is not None:
+        next_node = current.next
+        current.next = previous
+        previous = current
+        current = next_node
+
+    head = previous
+
+insert(10)
+insert(20)
+insert(30)
+
+print("Original list:")
+display()
+
+search(20)
+
+delete(20)
+
+print("After deletion:")
+display()
+
+reverse()
+
+print("After reverse:")
+display()
